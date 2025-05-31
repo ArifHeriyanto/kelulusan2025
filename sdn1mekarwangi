@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat Kelulusan SDN 1 Mekarwangi</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+    .container {
+      background-color: #ffffffee;
+      padding: 40px;
+      width: 90%;
+      max-width: 720px;
+      border-radius: 20px;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+    }
+    h2 {
+      text-align: center;
+      color: #2575fc;
+    }
+    input, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    input:focus {
+      border-color: #2575fc;
+      outline: none;
+      box-shadow: 0 0 5px rgba(37, 117, 252, 0.5);
+    }
+    button {
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+      font-weight: bold;
+      border: none;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: linear-gradient(to right, #2575fc, #6a11cb);
+    }
+    .result {
+      margin-top: 30px;
+    }
+    .surat {
+      border: 2px solid #2575fc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fdfdfd;
+    }
+    .center {
+      text-align: center;
+    }
+    table {
+      width: 100%;
+      margin-top: 10px;
+    }
+    td {
+      padding: 6px 0;
+    }
+    .logo img {
+      width: 100px;
+      height: auto;
+    }
+    .catatan {
+      color: #d63384;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔍 Cek Surat Kelulusan</h2>
+    <p>Masukkan <strong>NIPD</strong> Anda untuk melihat hasil kelulusan:</p>
+    <input type="text" id="nipdInput" placeholder="Contoh: 192001002">
+    <button onclick="cekKelulusan()">Lihat Surat Kelulusan</button>
+
+    <div class="result" id="hasilKelulusan"></div>
+  </div>
+
+  <script>
+    const dataSiswa = {
+      "192001002": { nama: "DANIL ADITIA NUGRAHA", nilai: 759.00, rata2: 75.90, keterangan: "LULUS" },
+      "192001003": { nama: "DEDE IQBAL SAEPUDIN", nilai: 759.95, rata2: 76.00, keterangan: "LULUS" },
+      "192001006": { nama: "RESTY NURUL FADILAH", nilai: 814.75, rata2: 81.48, keterangan: "LULUS" },
+      "192001007": { nama: "REVA AGUSTIN", nilai: 804.20, rata2: 80.42, keterangan: "LULUS" },
+      "192001008": { nama: "REVA NURHASANAH", nilai: 816.95, rata2: 81.70, keterangan: "LULUS" },
+      "192001009": { nama: "RIFAN MAULANA", nilai: 761.90, rata2: 76.19, keterangan: "LULUS" },
+      "192001010": { nama: "SAREHAN RAHAYU", nilai: 789.35, rata2: 78.94, keterangan: "LULUS" },
+      "192001011": { nama: "TIARA MEILANI", nilai: 771.35, rata2: 77.14, keterangan: "LULUS" }
+    };
+
+    function cekKelulusan() {
+      const nipd = document.getElementById('nipdInput').value.trim();
+      const hasil = document.getElementById('hasilKelulusan');
+      const siswa = dataSiswa[nipd];
+
+      if (siswa) {
+        hasil.innerHTML = `
+          <div class="surat">
+            <div class="logo center">
+              <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEheKoTHBK5gyjqdWLJAqabmiT4p6Faj2ioWkeIkyFEcewIQeGzXUcmTe068xKR5OFCWNHqiY7_wy8BvJ0naehvD8W-e0nmzc4Ve9Z2LhaCFtyApAt1mmis_U-eRONlwzJeiXymVyD6BgfRGW2czOdIbkggwVbYUVUl1CVJsimI6W-cP7gziSMCnBka-FqUB/s200/69987-removebg-preview-removebg-preview.png" alt="Logo SDN 1 Mekarwangi">
+            </div>
+            <h3 class="center">SURAT KETERANGAN KELULUSAN</h3>
+            <p class="center">Nomor: 400.3.11.1/70-SD/2025</p>
+
+            <p>Yang bertanda tangan di bawah ini:</p>
+            <table>
+              <tr><td>Nama</td><td>: Tasripin</td></tr>
+              <tr><td>NIP</td><td>: 19850508201409100</td></tr>
+              <tr><td>Jabatan</td><td>: Kepala Sekolah SD Negeri 1 Mekarwangi</td></tr>
+            </table>
+
+            <p>Menerangkan bahwa:</p>
+            <table>
+              <tr><td>Nama</td><td>: <strong>${siswa.nama}</strong></td></tr>
+              <tr><td>NIPD</td><td>: ${nipd}</td></tr>
+              <tr><td>Jumlah Nilai</td><td>: ${siswa.nilai}</td></tr>
+              <tr><td>Rata-rata Nilai</td><td>: ${siswa.rata2}</td></tr>
+              <tr><td>Keterangan</td><td>: <strong>${siswa.keterangan}</strong></td></tr>
+            </table>
+
+            <p>Telah menyelesaikan seluruh program pembelajaran dan dinyatakan <strong>${siswa.keterangan}</strong> dari Satuan Pendidikan SDN 1 Mekarwangi Tahun Pelajaran 2024/2025.</p>
+
+            <p>Demikian surat keterangan ini dibuat untuk dapat digunakan sebagaimana mestinya.</p>
+
+            <p class="catatan">
+              🔔 Catatan: File asli Surat Keterangan Lulus, Rapor dan Ijazah akan diserahkan pada saat perpisahan Kelas VI Tahun 2025.
+            </p>
+
+            <div class="center" style="margin-top: 40px;">
+              <p>Mekarwangi, 10 Juni 2025</p>
+              <p>Kepala Sekolah</p>
+              <br>
+              <p>TTD</p>
+		<br>
+		<p><strong>Tasripin</strong></p>
+              <p>NIP. 19850508201409100</p>
+            </div>
+          </div>
+        `;
+      } else {
+        hasil.innerHTML = `<p style="color:red; font-weight:bold;">❌ NIPD tidak ditemukan. Silakan coba lagi.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
